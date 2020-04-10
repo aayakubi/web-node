@@ -2,7 +2,7 @@ FROM alpine
 
 RUN apk add git \
 	&& apk add yarn \
-	&& git clone git@github.com:drucoder/docker-site.git
+	&& git clone git@github.com:aayakubi/web-node.git \
 	&& cd docker-site \ 
 	&& yarn
 
