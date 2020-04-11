@@ -6,6 +6,6 @@ RUN apk add git \
 	&& cd web-node \ 
 	&& yarn
 	
-WORKDIR ./docker-site
+WORKDIR ./web-node
 
 EXPOSE 3000
