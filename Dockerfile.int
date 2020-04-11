@@ -3,7 +3,7 @@ FROM alpine
 RUN apk add git \
 	&& apk add yarn \
 	&& git clone https://github.com/aayakubi/web-node.git \
-	&& cd docker-site \ 
+	&& cd web-node \ 
 	&& yarn
 	
 WORKDIR ./docker-site
