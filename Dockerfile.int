@@ -5,9 +5,7 @@ RUN apk add git \
 	&& git clone https://github.com/aayakubi/web-node.git \
 	&& cd docker-site \ 
 	&& yarn
-
-
+	
 WORKDIR ./docker-site
-
 
 EXPOSE 3000
