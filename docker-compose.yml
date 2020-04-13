@@ -14,9 +14,11 @@ services:
     restart: always #for rastarting app if it crashed
   app: #name of service
    # build: . #will build trought local directory
+   # container_name: не задается, если запускается несколько копий
     image: ayakubi/web-node #build from image
     ports:
-      - 7755-7777:3000
+      #-7755:3000 для одного контейнера      
+      - 7755-7777:3000 #диапазон для нескольких контейнеров
     environment:
       POSTGRES_HOST: db #переменная в приложении для подключения к контейнеру с бд
     restart: always
