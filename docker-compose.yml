@@ -1,33 +1,33 @@
 version: '3'
 services:
-  db:
-    image: postgres:11.4-alpine
-    container_name: postgres
+  db:  
+    image: postgres:11.4-alpine #image docker-hub or your
+    container_name: postgres #add container-name
     ports:
       - 5432:5432
     volumes:
-      - ./pg_data:/var/lib/postgresql/data/pgdata
+      - ./pg_data:/var/lib/postgresql/data/pgdata #directory that will be attached for save data at the local
     environment:
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: docker_test
-      PGDATA: /var/lib/postgresql/data/pgdata
-    restart: always
-  app:
-    image: drucoder/web-server
+      POSTGRES_PASSWORD: ssd
+      POSTGRES_DB: docker_tst #DB's name
+      PGDATA: /var/lib/postgresql/data/pgdata #it have to be same as 'volumes'
+    restart: always #for rastarting app if it crashed
+  app: #name of service
+   # build: . #will build trought local directory
+    image: ayakubi/web-node #build from image
     ports:
-      - 3000-3005:3000
+      - 7755-7777:3000
     environment:
-      POSTGRES_HOST: db
+      POSTGRES_HOST: db #переменная в приложении для подключения к контейнеру с бд
     restart: always
-    links:
+    links: #зависимость чтобы сначала стартовала ДБ, затем app
       - db
   nginx:
     image: nginx:1.17.2-alpine
     container_name: nginx
     volumes:
-      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./default.conf:/etc/nginx/conf.d/default.conf #default.conf - конф-nginx
     links:
       - app
     ports:
       - 8989:8989
-
